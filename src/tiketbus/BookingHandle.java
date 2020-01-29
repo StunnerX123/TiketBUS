@@ -484,7 +484,7 @@ public class BookingHandle {
                         String key = "id_tiket";
                         String val = format.rawDate();
                         
-                        if(db.delete(table, where, key, val)){
+                        if(db.delete( where, val, 0)){
                             System.out.println("-----------------------------------------------------");
                             System.out.println(" Data Perjalanan Berhasil Dihapus");
                             done = true;

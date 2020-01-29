@@ -288,7 +288,7 @@ public class BusHandle {
                 String where = "`kode_bus`='"+pil+"'" ;
                 String key = "kode_bus";
                 String val = format.rawDate();
-                if(db.delete(table, where, key, val)){
+                if(db.delete( where, val, 2)){
                     System.out.println(" Data Bus Berhasil Dihapus");
                     done = true;
                     sc.nextLine();

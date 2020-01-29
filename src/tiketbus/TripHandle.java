@@ -392,7 +392,7 @@ public class TripHandle {
                 String where = "`id_perjalanan`='"+pil+"'" ;
                 String key = "id_perjalanan";
                 String val = format.rawDate();
-                if(db.delete(table, where, key, val)){
+                if(db.delete( where, val, 1)){
                     System.out.println("----------------------------------");
                     System.out.println(" Data Perjalanan Berhasil Dihapus");
                     done = true;

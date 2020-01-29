@@ -163,8 +163,19 @@ public class Database {
         return hasil;
     }
     
-    public boolean delete(String table,String where, String key, String val){
-        sql = "UPDATE `"+table+"` SET `aktif`=0 , `"+key+"`='"+val+"' WHERE aktif=1 AND "+where;
+    public boolean delete(String where, String val, int s){
+        if(s == 2){
+            sql =   "UPDATE `t_tiket` SET `kode_bus`='Canceled' WHERE "+ where +
+                    "; UPDATE `t_perjalanan` SET `kode_bus`='Canceled' WHERE "+ where +
+                    "; UPDATE `t_bus` SET `aktif`=0 , `kode_bus`='"+val+"' WHERE aktif=1 AND "+ where;
+        } else if(s == 1){
+            List<Map<String, Object>> data = select("t_perjalanan", where);
+            sql =   "UPDATE `t_tiket` SET , SET `kode_bus`='Canceled' WHERE `kode_bus`='"+ data.get(0).get("kode_bus").toString() +
+                    "'; UPDATE `t_perjalanan` SET `aktif`=0 , `id_perjalanan`='"+val+"' WHERE aktif=1 AND "+where;
+        } else {
+            sql = "UPDATE `t_tiket` SET `aktif`=0 , `t_tiket`='"+val+"' WHERE aktif=1 AND "+where;
+        }
+        
         try
         {
             String urlValue = getUrlValue();
@@ -195,7 +206,7 @@ public class Database {
         String host="localhost";
         String db="tiketBus";
         
-        return "jdbc:mysql://"+host+"/"+db+"?user="+user+"&password="+pwd;
+        return "jdbc:mysql://"+host+"/"+db+"?user="+user+"&password="+pwd+"&allowMultiQueries=true";
     }
     
     public boolean testKoneksi(){
