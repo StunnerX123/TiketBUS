@@ -5,10 +5,11 @@
  */
 package tiketbus;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.*;
+
 import org.apache.commons.lang3.text.WordUtils;
 
 /**
@@ -32,7 +33,7 @@ public class BookingHandle {
         while(!done){
             display.clrscr();
             display.header();
-            System.out.println("----------------| TAMBAH DATA TIKET |--------------");
+            System.out.println("---------------------------------------------| TAMBAH DATA TIKET |---------------------------------------------");
             trip.dataOnly();
             System.out.print(" Masukan Tujuan : ");
             tujuan = WordUtils.capitalizeFully(sc.nextLine(),' ');
@@ -50,7 +51,7 @@ public class BookingHandle {
                 while(!next){
                     display.clrscr();
                     display.header();
-                    System.out.println("----------------| TAMBAH DATA TIKET |--------------");
+                    System.out.println("---------------------------------------------| TAMBAH DATA TIKET |---------------------------------------------");
                     System.out.println(" Tujuan \t\t: "+tujuan);
                     System.out.println(" Tanggal Berangkat\t: "+format.reFormatTgl(tgl_prgi));
                     System.out.println(" Jam Berangkat \t\t: "+format.formatJam(db.jamBerangkat(kodebus)));
@@ -133,7 +134,7 @@ public class BookingHandle {
         String where;
         display.clrscr();
         display.header();
-        System.out.println("----------------------| UBAH TIKET |-----------------------");
+        System.out.println("----------------------------------------------| UBAH DATA TIKET |----------------------------------------------");
         System.out.print(" Masukan Kode Tiket : B-");
         where="B-"+sc.nextLine();
         List<Map<String, Object>> data = db.select(table, "`id_tiket`='"+where+"'");
@@ -149,7 +150,7 @@ public class BookingHandle {
             while(!next){
                 display.clrscr();
                 display.header();
-                System.out.println("----------------------| UBAH TIKET |-----------------------");
+                System.out.println("----------------------------------------------| UBAH DATA TIKET |----------------------------------------------");
                 System.out.println(" Kode Tiket \t\t: "+id_tiket);
                 System.out.println(" KTP Pemesan \t\t: "+ktp); 
                 System.out.println(" Nama Pemesan \t\t: "+nama_pemesan);
@@ -257,7 +258,7 @@ public class BookingHandle {
         String where;
         display.clrscr();
         display.header();
-        System.out.println("----------------------| PENCARIAN KODE TIKET |-----------------------");
+        System.out.println("--------------------------------------------| PENCARIAN KODE TIKET |-------------------------------------------");
         System.out.print(" Masukan Kode Tiket : ");
         where=sc.nextLine();
         System.out.println("----------------------------------| DATA TIKET |----------------------------------");
@@ -297,7 +298,7 @@ public class BookingHandle {
         String where;
         display.clrscr();
         display.header();
-        System.out.println("----------------------| PENCARIAN NAMA PEMESAN |-----------------------");
+        System.out.println("------------------------------------------| PENCARIAN NAMA PEMESAN |-------------------------------------------");
         System.out.print(" Masukan Nama Pembeli : ");
         where=sc.nextLine();
         System.out.println("----------------------------------| DATA TIKET |----------------------------------");
@@ -333,7 +334,7 @@ public class BookingHandle {
         String where;
         display.clrscr();
         display.header();
-        System.out.println("----------------------| PENCARIAN TUJUAN TIKET |-----------------------");
+        System.out.println("------------------------------------------| PENCARIAN TUJUAN TIKET |-------------------------------------------");
         System.out.print(" Masukan Tujuan Tiket : ");
         where=sc.nextLine();
         System.out.println("----------------------------------| DATA TIKET |----------------------------------");
@@ -369,7 +370,7 @@ public class BookingHandle {
         String where;
         display.clrscr();
         display.header();
-        System.out.println("----------------------| PENCARIAN TANGGAL PESAN |-----------------------");
+        System.out.println("------------------------------------------| PENCARIAN TANGGAL PESAN |------------------------------------------");
         System.out.print(" Masukan Tanggal Berangkat [ dd/mm/yyyy ]  : ");
         where=format.formatTgl(sc.nextLine());
         System.out.println("----------------------------------| DATA TIKET |----------------------------------");
@@ -406,7 +407,7 @@ public class BookingHandle {
         String where;
         display.clrscr();
         display.header();
-        System.out.println("----------------------| PENCARIAN TANGGAL BERANGKAT |-----------------------");
+        System.out.println("---------------------------------------| PENCARIAN TANGGAL BERANGKAT |-----------------------------------------");
         System.out.print(" Masukan Tanggal Berangkat [ dd/mm/yyyy ]  : ");
         where=format.formatTgl(sc.nextLine());
         System.out.println("----------------------------------| DATA TIKET |----------------------------------");
@@ -444,7 +445,7 @@ public class BookingHandle {
             String where;
             display.clrscr();
             display.header();
-            System.out.println("----------------------| HAPUS TIKET |-----------------------");
+            System.out.println("---------------------------------------------| HAPUS DATA TIKET |----------------------------------------------");
             System.out.println(" Masukan 0 untuk kembali");
             System.out.print(" Masukan Kode Tiket : ");
             pil=sc.nextLine();

@@ -31,7 +31,7 @@ public class TripHandle {
         while(!done){
             display.clrscr();
             display.header();
-            System.out.println("----------------| TAMBAH DATA PERJALANAN |--------------");
+            System.out.println("------------------------------------------| TAMBAH DATA PERJALANAN |-------------------------------------------");
             System.out.println(" Contoh Kode Perjalanan [ T-001 ] ");
             System.out.print(" Kode Perjalanan : T-");
             kode = "T-"+sc.nextLine();
@@ -52,6 +52,9 @@ public class TripHandle {
            
             if(!format.kodeBus(kodebus) || !format.harga(harga) || !format.kodePerjalanan(kode) || !format.tujuan(tujuan) || !format.makan(makan)){
                 System.out.println(" Data yang Dimasukan Tidak Sesuai!");
+                sc.nextLine();
+            } else if (!db.checkBusCode(kodebus)){
+                System.out.println(" Kode Bus Sudah Digunakan Oleh Perjalanan Lain");
                 sc.nextLine();
             } else {
                 String [] data = {kode,tujuan,harga,makan,kodebus};
@@ -76,7 +79,7 @@ public class TripHandle {
     public void view(){
         display.clrscr();
         display.header();
-        System.out.println("---------------------------| DATA PERJALANAN |----------------------------");
+        System.out.println("----------------------------------------------| DATA PERJALANAN |----------------------------------------------");
         System.out.println("--------------------------------------------------------------------------");
         System.out.println("| Kode Perjalanan |      Tujuan      |    Harga    | Jam Berangkat | Makan |");
         System.out.println("|-----------------|------------------|-------------|---------------|-------|");
@@ -115,7 +118,7 @@ public class TripHandle {
                     while(second){
                         display.clrscr();
                         display.header();
-                        System.out.println("-------------------| DATA PERJALANAN |---------------------");
+                        System.out.println("-------------------------------------------| UBAH DATA PERJALANAN |--------------------------------------------");
                         System.out.println("-----------------------------------------------------------");
                         System.out.println(" Tekan [Enter] untuk Tidak mengubah data sebelumnya");
                         System.out.println(" Kode Perjalanan Sebelumnya \t\t: "+data.get(0).get("id_perjalanan"));
@@ -159,6 +162,9 @@ public class TripHandle {
                         if(!format.kodeBus(kodebus) || !format.harga(harga) || !format.kodePerjalanan(kode) || !format.tujuan(tujuan) || !format.makan(makan)){
                             System.out.println(" Data yang Dimasukan Tidak Sesuai!");
                             sc.nextLine();
+                        } else if (!db.checkBusCode(kodebus)){
+                            System.out.println(" Kode Bus Sudah Digunakan Oleh Perjalanan Lain");
+                            sc.nextLine();
                         } else {
                             where = " WHERE `id_perjalanan`='"+pil+"' AND `aktif`='1'" ;
                             
@@ -170,8 +176,9 @@ public class TripHandle {
                                 sc.nextLine();
                                 second=false;
                             } else {
-                                System.out.println("Terjadi Kesalahan Saat Pengubahan Data");
-                                System.out.println("Pastikan data yang diinput sesuai dan terkoneksi ke database");
+                                System.out.println(" Terjadi Kesalahan Saat Pengubahan Data");
+                                System.out.println(" Pastikan Kode Perjalanan Unik");
+                                System.out.println(" Pastikan data yang diinput sesuai dan terkoneksi ke database");
                                 sc.nextLine();
                             }
                         }
@@ -226,7 +233,7 @@ public class TripHandle {
         String where;
         display.clrscr();
         display.header();
-        System.out.println("----------------------| PENCARIAN KODE PERJALANAN |-----------------------");
+        System.out.println("-----------------------------------------| PENCARIAN KODE PERJALANAN |-----------------------------------------");
         System.out.print(" Masukan Kode Perjalanan : ");
         where=sc.nextLine();
         System.out.println("--------------------------------------------------------------------------");
@@ -256,7 +263,7 @@ public class TripHandle {
         String where;
         display.clrscr();
         display.header();
-        System.out.println("--------------------| PENCARIAN TUJUAN PERJALANAN |-----------------------");
+        System.out.println("----------------------------------------| PENCARIAN TUJUAN PERJALANAN |----------------------------------------");
         System.out.print(" Masukan Tujuan Perjalanan : ");
         where=sc.nextLine();
         System.out.println("--------------------------------------------------------------------------");
@@ -286,7 +293,7 @@ public class TripHandle {
         String min,max;
         display.clrscr();
         display.header();
-        System.out.println("--------------------| PENCARIAN HARGA PERJALANAN |------------------------");
+        System.out.println("----------------------------------------| PENCARIAN HARGA PERJALANAN |-----------------------------------------");
         System.out.print(" Masukan Harga Minimal  : Rp. ");
         min=sc.nextLine();
         System.out.print(" Masukan Harga Maksimal : Rp. ");
@@ -318,7 +325,7 @@ public class TripHandle {
         String min,max;
         display.clrscr();
         display.header();
-        System.out.println("----------------| PENCARIAN JUMLAH MAKAN PERJALANAN |---------------------");
+        System.out.println("-------------------------------------| PENCARIAN JUMLAH MAKAN PERJALANAN |-------------------------------------");
         System.out.print(" Masukan Jumlah Makan Minimal  : ");
         min=sc.nextLine();
         System.out.print(" Masukan Jumlah Makan Maksimal : ");
@@ -350,7 +357,7 @@ public class TripHandle {
         String min,max;
         display.clrscr();
         display.header();
-        System.out.println("----------------------| PENCARIAN JAM BERANGKAT |-------------------------");
+        System.out.println("------------------------------------------| PENCARIAN JAM BERANGKAT |------------------------------------------");
         System.out.println(" Jam = [jj:mm] Contoh = 10:30");
         System.out.print(" Masukan Jam Berangkat Minimal  : ");
         min=sc.nextLine();

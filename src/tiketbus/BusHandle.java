@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package tiketbus;
-import java.util.*;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
 
 /**
  *
@@ -141,6 +145,7 @@ public class BusHandle {
                                 second=false;
                             } else {
                                 System.out.println(" Terjadi Kesalahan Saat Penambahan Data");
+                                System.out.println(" Pastikan Kode Bus Unik");
                                 System.out.println(" Pastikan data yang diinput sesuai dan terkoneksi ke database");
                                 sc.nextLine();
                             }
@@ -285,7 +290,7 @@ public class BusHandle {
             if(pil.equals("0")){
                 done = true;
             } else if(format.kodeBus(pil)){
-                String where = "`kode_bus`='"+pil+"'" ;
+                String where = " `kode_bus`='"+pil+"'" ;
                 String key = "kode_bus";
                 String val = format.rawDate();
                 if(db.delete( where, val, 2)){

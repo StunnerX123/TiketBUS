@@ -5,7 +5,12 @@
  */
 package tiketbus;
 import java.sql.*; 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -56,12 +61,7 @@ public class Database {
             conn.close();
         } catch(SQLException e)
         {
-            if(table == "t_bus"){
-                System.out.println(" Kode Bus sudah ada!");
-            }
-            if(table == "t_perjalanan"){
-                System.out.println(" Kode Perjalanan sudah ada!");
-            }
+            
             hasil = false;
         } 
         
@@ -77,7 +77,9 @@ public class Database {
             sql="SELECT * FROM `"+table+"` WHERE `aktif`=1;";        
         } else if(table=="t_perjalanan`,`t_bus"){
             sql="SELECT DISTINCT * FROM `"+table+"` WHERE t_perjalanan.`aktif`=1 AND "+where+" ORDER BY `tujuan`;";    
-        } 
+        } else if(table=="cekBus"){
+            sql="SELECT * FROM `t_perjalanan` WHERE `aktif`=1 AND `kode_bus`='"+where+"'";
+        }
         else {
             sql="SELECT * FROM `"+table+"` WHERE `aktif`=1 AND "+where+";";
         }
@@ -130,7 +132,7 @@ public class Database {
         
         sql = sb.append(where+";").toString();
         sb.setLength(0);
-        
+
         try
         {
             String urlValue = getUrlValue();
@@ -143,6 +145,8 @@ public class Database {
             for(int i = 0; i < data.length ; i++){
                 pStatement.setString(i+1,data[i]);
             }
+            System.out.println(pStatement);
+            
             if(pStatement.executeUpdate()>0){
                 hasil = true;
             } else {
@@ -152,26 +156,27 @@ public class Database {
             pStatement.close();
             conn.close();
         } catch(SQLException e) {
-            if(table == "t_bus"){
-                System.out.println(" Kode Bus sudah ada!");
-            }
-            if(table == "t_perjalanan"){
-                System.out.println(" Kode Perjalanan sudah ada!");
-            }
+            System.out.println(e);
             hasil = false;
         }     
         return hasil;
     }
     
     public boolean delete(String where, String val, int s){
-        if(s == 2){
-            sql =   "UPDATE `t_tiket` SET `kode_bus`='Canceled' WHERE "+ where +
-                    "; UPDATE `t_perjalanan` SET `kode_bus`='Canceled' WHERE "+ where +
-                    "; UPDATE `t_bus` SET `aktif`=0 , `kode_bus`='"+val+"' WHERE aktif=1 AND "+ where;
+        String[] col = {"kode_bus"};
+        String[] uData = {"Cancel"};
+        
+        if(s == 2){   
+            update("t_tiket", col, uData, "WHERE " + where );
+            update("t_perjalanan", col, uData,"WHERE " +  where );
+            
+            sql = "UPDATE `t_bus` SET `aktif`=0 , `kode_bus`='"+val+"' WHERE aktif=1 AND "+ where;
         } else if(s == 1){
             List<Map<String, Object>> data = select("t_perjalanan", where);
-            sql =   "UPDATE `t_tiket` SET , SET `kode_bus`='Canceled' WHERE `kode_bus`='"+ data.get(0).get("kode_bus").toString() +
-                    "'; UPDATE `t_perjalanan` SET `aktif`=0 , `id_perjalanan`='"+val+"' WHERE aktif=1 AND "+where;
+            String newWhere =  "WHERE `kode_bus`='"+ data.get(0).get("kode_bus").toString()+"'";
+            update("t_tiket", col, uData, newWhere );
+            
+            sql = "UPDATE `t_perjalanan` SET `aktif`=0 , `id_perjalanan`='"+val+"' WHERE aktif=1 AND "+where;
         } else {
             sql = "UPDATE `t_tiket` SET `aktif`=0 , `t_tiket`='"+val+"' WHERE aktif=1 AND "+where;
         }
@@ -184,8 +189,9 @@ public class Database {
             PreparedStatement pStatement = null;
             
             pStatement = conn.prepareStatement(sql);
-            
-            if(pStatement.executeUpdate()>0){
+            int z = pStatement.executeUpdate();
+            System.out.println(z);
+            if(z > 0){
                 hasil = true;
             } else {
                 hasil = false;
@@ -195,8 +201,10 @@ public class Database {
             conn.close();
         } catch(SQLException e)
         {         
+            System.out.println(e);
             hasil = false;
         }   
+        
         return hasil;
     }
     
@@ -221,6 +229,7 @@ public class Database {
             return true;
         } catch(SQLException e)
             {
+                System.out.println(e);
                 return false;
             }    
         }
@@ -268,6 +277,15 @@ public class Database {
             System.out.println(" Maaf, Bus Dengan Kode Bus '"+kodebus+"' Pada Tanggal "+tgl+" Sudah Penuh!");
             return false;
         }
+    }
+    
+    public boolean checkBusCode(String kode){
+        List<Map<String, Object>> dataBus = select("cekBus", kode);
+        if(dataBus.size() > 0){
+            return false;
+        } else {
+            return true;
+        } 
     }
     
 }
