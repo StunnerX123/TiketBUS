@@ -14,21 +14,21 @@ public class Views {
     FormatData format = new FormatData();
     
     public void header(){
-        System.out.println("**********************| Tanggal Hari Ini : "+format.getDate(false)+" |*");
-        System.out.println("*    ____________ __ ____________   ____  __  _______  *");
-        System.out.println("*   /_  __/  _/ //_// ____/_  __/  / __ )/ / / / ___/  *");
-        System.out.println("*    / /  / // ,<  / __/   / /    / __  / / / /\\__ \\   *");
-        System.out.println("*   / / _/ // /| |/ /___  / /    / /_/ / /_/ /___/ /   *");
-        System.out.println("*  /_/ /___/_/ |_/_____/ /_/    /_____/\\____//____/    *");
-        System.out.println("* \t\t\t\t\t\t       *");
-        System.out.println("*      ____  ___    _   ______  __  ___   ________     *");
-        System.out.println("*     / __ )/   |  / | / / __ \\/ / / / | / / ____/     *");
-        System.out.println("*    / __  / /| | /  |/ / / / / / / /  |/ / / __       *");
-        System.out.println("*   / /_/ / ___ |/ /|  / /_/ / /_/ / /|  / /_/ /       *");
-        System.out.println("*  /_____/_/  |_/_/ |_/_____/\\____/_/ |_/\\____/        *");
-        System.out.println("* \t\t\t\t\t\t       *");
-        System.out.println("*****************| PBO-8 2020 UNIKOM |******************");
-        System.out.println("********| 10118325-10118342-10118312-10118321 |*********");
+        System.out.println("*****************************************************************************| Tanggal Hari Ini : "+format.getDate(false)+" |*");
+        System.out.println("*    ____  __  _______    ____  ___    __  _____    __    ___       __ __ _______   ___________    _   _____  *");
+        System.out.println("*   / __ )/ / / / ___/   / __ \\/   |  / / / /   |  / /   /   |     / //_// ____/ | / / ____/   |  / | / /   | *");
+        System.out.println("*  / __  / / / /\\__ \\   / /_/ / /| | / /_/ / /| | / /   / /| |    / ,<  / __/ /  |/ / /   / /| | /  |/ / /| | *");
+        System.out.println("* / /_/ / /_/ /___/ /  / ____/ ___ |/ __  / ___ |/ /___/ ___ |   / /| |/ /___/ /|  / /___/ ___ |/ /|  / ___ | *");
+        System.out.println("*/_____/\\____//____/  /_/   /_/  |_/_/ /_/_/  |_/_____/_/  |_|  /_/ |_/_____/_/ |_/\\____/_/  |_/_/ |_/_/  |_| *");
+        System.out.println("* \t\t\t\t\t\t\t\t\t\t\t\t\t      *");
+        System.out.println("*\t\t\t\t      ____  ___    _   ______  __  ___   ________    \t\t\t      *");
+        System.out.println("*\t\t\t\t     / __ )/   |  / | / / __ \\/ / / / | / / ____/   \t\t\t      *");
+        System.out.println("*\t\t\t\t    / __  / /| | /  |/ / / / / / / /  |/ / / __      \t\t\t      *");
+        System.out.println("*\t\t\t\t   / /_/ / ___ |/ /|  / /_/ / /_/ / /|  / /_/ /      \t\t\t      *");
+        System.out.println("*\t\t\t\t  /_____/_/  |_/_/ |_/_____/\\____/_/ |_/\\____/     \t\t\t      *");
+        System.out.println("* \t\t\t\t\t\t\t\t\t\t\t\t\t      *");
+        System.out.println("********************************************| PBO-8 2020 UNIKOM |**********************************************");
+        System.out.println("************************************| 10118325-10118342-10118312-10118321 |************************************");
     }
     
     public void menu(){
