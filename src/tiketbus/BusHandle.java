@@ -53,6 +53,7 @@ public class BusHandle {
                     sc.nextLine();
                 }else{
                     System.out.println(" Terjadi Kesalahan Saat Penambahan Data");
+                    System.out.println(" Pastikan Kode Bus Unik");
                     System.out.println(" Pastikan data yang diinput sesuai dan terkoneksi ke database");
                     sc.nextLine();
                 };

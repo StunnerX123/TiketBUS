@@ -63,7 +63,9 @@ public class TripHandle {
                     System.out.println("--------------------------------------------------------");
                 }else{
                     System.out.println(" Terjadi Kesalahan Saat Penambahan Data!");
-                    System.out.println("--------------------------------------------------------");
+                    System.out.println(" Pastikan Kode Perjalanan Unik");
+                    System.out.println(" Pastikan data yang diinput sesuai dan terkoneksi ke database");
+                    sc.nextLine();
                 };
             }
             System.out.println(" Apakah anda ingin memasukan data lagi ?");
