@@ -25,7 +25,7 @@ public class BusHandle {
         while(!done){
             display.clrscr();
             display.header();
-            System.out.println("-------------------| TAMBAH DATA BUS |------------------");
+            System.out.println("----------------------------------------------| TAMBAH DATA BUS |----------------------------------------------");
             System.out.println(" Contoh Kode Bus [ DS-01 ]");
             System.out.print(" Kode Bus : ");
             kode = sc.nextLine();
@@ -38,7 +38,7 @@ public class BusHandle {
             System.out.println(" Contoh Jam Berangkat [ 07:00 ]");
             System.out.print(" Jam Berangkat : ");
             jam = sc.nextLine();
-            System.out.println("--------------------------------------------------------");
+            System.out.println("-------------------------------------------------------------------------------------------------------------");
             if(!format.kodeBus(kode) || !format.seatBus(seat) || !format.jam(jam)){
                 System.out.println(" Data yang Dimasukan Tidak Sesuai!");
                 sc.nextLine();
@@ -48,14 +48,14 @@ public class BusHandle {
                     System.out.println(" Penambahan Data Bus Berhasil!");
                     sc.nextLine();
                 }else{
-                    System.out.println("Terjadi Kesalahan Saat Penambahan Data");
-                    System.out.println("Pastikan data yang diinput sesuai dan terkoneksi ke database");
+                    System.out.println(" Terjadi Kesalahan Saat Penambahan Data");
+                    System.out.println(" Pastikan data yang diinput sesuai dan terkoneksi ke database");
                     sc.nextLine();
                 };
             }
-            System.out.println("Apakah anda ingin memasukan data lagi ?");
-            System.out.println("Pilih [y] untuk memasukan data, atau character lain untuk keluar");
-            System.out.print("Pilihan anda : ");
+            System.out.println(" Apakah anda ingin memasukan data lagi ?");
+            System.out.println(" Pilih [y] untuk memasukan data, atau character lain untuk keluar");
+            System.out.print(" Pilihan anda : ");
             pil = sc.nextLine();
             if(!pil.equals("y") && !pil.equals("Y")){
                 done = true;
@@ -66,7 +66,7 @@ public class BusHandle {
     public void view(){
         display.clrscr();
         display.header();
-        System.out.println("---------------------| DATA BUS |-----------------------");
+        System.out.println("--------------------------------------------------| DATA BUS |-------------------------------------------------");
         System.out.println("-----------------------------------");
         System.out.println("| Kode Bus | Seat | Jam Berangkat |");
         System.out.println("|----------|------|---------------|");
@@ -103,7 +103,7 @@ public class BusHandle {
                     while(second){
                         display.clrscr();
                         display.header();
-                        System.out.println("---------------------| DATA BUS |-----------------------");
+                        System.out.println("-----------------------------------------------| UBAH DATA BUS |-----------------------------------------------");
                         System.out.println(" Tekan [Enter] untuk Tidak mengubah data sebelumnya");
                         System.out.println(" Kode Bus Sebelumnya \t\t: "+data.get(0).get("kode_bus"));
                         System.out.print(" Kode Bus Baru \t\t\t: ");
@@ -140,14 +140,14 @@ public class BusHandle {
                                 sc.nextLine();
                                 second=false;
                             } else {
-                                System.out.println("Terjadi Kesalahan Saat Penambahan Data");
-                                System.out.println("Pastikan data yang diinput sesuai dan terkoneksi ke database");
+                                System.out.println(" Terjadi Kesalahan Saat Penambahan Data");
+                                System.out.println(" Pastikan data yang diinput sesuai dan terkoneksi ke database");
                                 sc.nextLine();
                             }
                         }
                     }
                 } else {
-                    System.out.println("Tidak dapat menemukan Kode Bus");
+                    System.out.println(" Tidak dapat menemukan Kode Bus");
                     sc.nextLine();
                 }  
             } else {
@@ -179,7 +179,7 @@ public class BusHandle {
                 case "0":
                     break;
                 default:
-                    System.out.println("Pilihan tidak Sesuai!");
+                    System.out.println(" Pilihan tidak Sesuai!");
                     sc.nextLine();
                     break;
             }
@@ -190,7 +190,7 @@ public class BusHandle {
         String where;
         display.clrscr();
         display.header();
-        System.out.println("-----------------| PENCARIAN KODE BUS |-----------------");
+        System.out.println("--------------------------------------------| PENCARIAN KODE BUS |---------------------------------------------");
         System.out.print(" Masukan Kode Bus : ");
         where=sc.nextLine();
         System.out.println("--------------------------------------------------------");
@@ -218,7 +218,7 @@ public class BusHandle {
         String min,max;
         display.clrscr();
         display.header();
-        System.out.println("--------------| PENCARIAN JUMLAH SEAT BUS |-------------");
+        System.out.println("------------------------------------------| PENCARIAN JUMLAH SEAT BUS |----------------------------------------");
         System.out.print(" Masukan Jumlah Seat Minimal  : ");
         min=sc.nextLine();
         System.out.print(" Masukan Jumlah Seat Maksimal : ");
@@ -247,8 +247,8 @@ public class BusHandle {
     public void searchJam(){
         String min,max;
         display.clrscr();
-        display.header();
-        System.out.println("-------------| PENCARIAN JAM BERANGKAT BUS |------------");
+        display.header();     
+        System.out.println("---------------------------------------| PENCARIAN JAM BERANGKAT BUS |-----------------------------------------");
         System.out.println(" Jam = [jj:mm] Contoh = 10:30");
         System.out.print(" Masukan Jam Berangkat Minimal  : ");
         min=sc.nextLine();
