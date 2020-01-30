@@ -164,7 +164,7 @@ public class Database {
     
     public boolean delete(String where, String val, int s){
         String[] col = {"kode_bus"};
-        String[] uData = {"Cancel"};
+        String[] uData = {"Batal"};
         
         if(s == 2){   
             update("t_tiket", col, uData, "WHERE " + where );
