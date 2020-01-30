@@ -259,7 +259,7 @@ public class TripHandle {
                 harga = format.formatHarga(data.get(i).get("harga").toString());
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
                 makan = format.formatMakan(data.get(i).get("makan").toString());
-                System.out.println("\t\t  |      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
+                System.out.println("\t\t  |      "+kode+"      | "+tujuan+"| "+ harga +" |     "+jam+"     |  "+makan+"  |");
             }
         } else {
             System.out.println("\t\t  |---------------------------| TIDAK ADA DATA |----------------------------|");
@@ -290,7 +290,7 @@ public class TripHandle {
                 harga = format.formatHarga(data.get(i).get("harga").toString());
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
                 makan = format.formatMakan(data.get(i).get("makan").toString());
-                System.out.println("\t\t  |      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
+                System.out.println("\t\t  |      "+kode+"      | "+tujuan+"| "+ harga +" |     "+jam+"     |  "+makan+"  |");
             }
         } else {
             System.out.println("\t\t  |---------------------------| TIDAK ADA DATA |----------------------------|");
