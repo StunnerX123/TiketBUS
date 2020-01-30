@@ -215,12 +215,8 @@ public class BusHandle {
                 kode = data.get(i).get("kode_bus").toString();
                 seat = format.formatJmlhSeat(data.get(i).get("jmlh_seat").toString());
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
-<<<<<<< HEAD
-                System.out.println("|  "+kode +"   | "+ seat +"  |     "+ jam +"     |");
-=======
                 System.out.println("\t\t\t\t      |  "+kode +"   | "+ seat +"  |     "+ jam +"     |");
                 System.out.println("\t\t\t\t      -----------------------------------");
->>>>>>> 89c31f64caf8cfa6e360ed67e5b21ea379c7deb2
             }
         } else {
             System.out.println("|---------------------------------------------| TIDAK ADA DATA |----------------------------------------------|");
@@ -252,8 +248,6 @@ public class BusHandle {
                 kode = data.get(i).get("kode_bus").toString();
                 seat = format.formatJmlhSeat(data.get(i).get("jmlh_seat").toString());
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
-                System.out.println("|  "+kode +"   | "+ seat +"  |     "+ jam +"     |");
-
                 System.out.println("\t\t\t\t      |  "+kode +"   | "+ seat +"  |    "+ jam +"     |");
                 System.out.println("\t\t\t\t      -----------------------------------");
 
@@ -289,12 +283,8 @@ public class BusHandle {
                 kode = data.get(i).get("kode_bus").toString();
                 seat = format.formatJmlhSeat(data.get(i).get("jmlh_seat").toString());
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
-<<<<<<< HEAD
-                System.out.println("|  "+kode +"   | "+ seat +"  |     "+ jam +"     |");
-=======
                 System.out.println("\t\t\t\t      |  "+kode +"   | "+ seat +"  |    "+ jam +"     |");
                 System.out.println("\t\t\t\t      -----------------------------------");
->>>>>>> 89c31f64caf8cfa6e360ed67e5b21ea379c7deb2
             }
         } else {
             System.out.println("|---------------------------------------------| TIDAK ADA DATA |----------------------------------------------|");
