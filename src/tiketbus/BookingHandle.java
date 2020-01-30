@@ -514,8 +514,6 @@ public class BookingHandle {
                     }
                 }
             }
-            
         }
-    }
-    
+    }  
 }

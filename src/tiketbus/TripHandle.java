@@ -171,7 +171,7 @@ public class TripHandle {
                         if(!format.kodeBus(kodebus) || !format.harga(harga) || !format.kodePerjalanan(kode) || !format.tujuan(tujuan) || !format.makan(makan)){
                             System.out.println(" Data yang Dimasukan Tidak Sesuai!");
                             sc.nextLine();
-                        } else if (!db.checkBusCode(kodebus)){
+                        } else if (!db.checkBusCode(kodebus) && kodebus != data.get(0).get("kode_bus").toString() ){
                             System.out.println(" Kode Bus Sudah Digunakan Oleh Perjalanan Lain");
                             sc.nextLine();
                         } else {
