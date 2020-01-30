@@ -168,7 +168,8 @@ public class TripHandle {
                             kodebus = data.get(0).get("kode_bus").toString();
                         } 
                         
-                        if(!format.kodeBus(kodebus) || !format.harga(harga) || !format.kodePerjalanan(kode) || !format.tujuan(tujuan) || !format.makan(makan)){
+                        if(!format.kodeBus(kodebus) || !format.harga(harga) || !format.kodePerjalanan(kode) 
+                                || !format.tujuan(tujuan) || !format.makan(makan)){
                             System.out.println(" Data yang Dimasukan Tidak Sesuai!");
                             sc.nextLine();
                         } else if (!db.checkBusCode(kodebus) && kodebus != data.get(0).get("kode_bus").toString() ){
@@ -178,7 +179,8 @@ public class TripHandle {
                             where = " WHERE `id_perjalanan`='"+pil+"' AND `aktif`='1'" ;
                             
                             String[] uData = {kode,tujuan,harga,makan,kodebus};
-                            String[] col = {"id_perjalanan","tujuan","harga","makan","kode_bus"};
+                            String[] col = {"id_perjalanan","tujuan","harga",
+                                "makan","kode_bus"};
                             
                             if(db.update(table, col, uData, where)){
                                 System.out.println(" Data Berhasil Diubah! Tekan [Enter] Untuk Kembali... ");

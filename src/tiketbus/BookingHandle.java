@@ -475,7 +475,6 @@ public class BookingHandle {
                     System.out.println(" KTP Pemesan \t\t: "+ktp);
                     System.out.println(" Nama Pemesan \t\t: "+nama_pemesan);
                     System.out.println(" Kota Tujuan \t\t: "+tujuan);
-                    System.out.println(" Kota Tujuan \t\t: "+tujuan);
                     System.out.println(" Tanggal Berangkat \t: "+tgl_prgi);
                     System.out.println(" Tanggal Pemesanan \t: "+tgl_psn);
                     System.out.println(" Jam Berangkat \t\t: "+format.formatJam(jam));

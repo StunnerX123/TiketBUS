@@ -145,7 +145,6 @@ public class Database {
             for(int i = 0; i < data.length ; i++){
                 pStatement.setString(i+1,data[i]);
             }
-            System.out.println(pStatement);
             
             if(pStatement.executeUpdate()>0){
                 hasil = true;
@@ -156,7 +155,6 @@ public class Database {
             pStatement.close();
             conn.close();
         } catch(SQLException e) {
-            System.out.println(e);
             hasil = false;
         }     
         return hasil;
@@ -178,7 +176,7 @@ public class Database {
             
             sql = "UPDATE `t_perjalanan` SET `aktif`=0 , `id_perjalanan`='"+val+"' WHERE aktif=1 AND "+where;
         } else {
-            sql = "UPDATE `t_tiket` SET `aktif`=0 , `t_tiket`='"+val+"' WHERE aktif=1 AND "+where;
+            sql = "UPDATE `t_tiket` SET `aktif`=0 , `id_tiket`='"+val+"' WHERE aktif=1 AND "+where;
         }
         
         try
@@ -190,7 +188,6 @@ public class Database {
             
             pStatement = conn.prepareStatement(sql);
             int z = pStatement.executeUpdate();
-            System.out.println(z);
             if(z > 0){
                 hasil = true;
             } else {
