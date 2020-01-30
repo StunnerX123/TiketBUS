@@ -74,38 +74,38 @@ public class Views {
         System.out.println(" 4. Cari Data Tiket");
         System.out.println(" 5. Hapus Data Tiket");
         System.out.println(" 0. Kembali");
-        System.out.println("----------------------------------------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
     }
     
     public void searchBus(){
-        System.out.println("-----------------------------------------------| PENCARIAN BUS |------------------------------------------------");
+        System.out.println("-----------------------------------------------| PENCARIAN BUS |-----------------------------------------------");
         System.out.println(" 1. Cari Berdasarkan Kode Bus");
         System.out.println(" 2. Cari Berdasarkan Jumlah Seat");
         System.out.println(" 3. Cari Berdasarkan Jam Berangkat");
         System.out.println(" 0. Kembali");
-        System.out.println("----------------------------------------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
     }
     
     public void searchTrip(){
-        System.out.println("-------------------------------------------| PENCARIAN PERJALANAN |---------------------------------------------");
+        System.out.println("-------------------------------------------| PENCARIAN PERJALANAN |--------------------------------------------");
         System.out.println(" 1. Cari Berdasarkan Kode Perjalanan");
         System.out.println(" 2. Cari Berdasarkan Tujuan");
         System.out.println(" 3. Cari Berdasarkan Harga Perjalanan");
         System.out.println(" 4. Cari Berdasarkan Jumlah Makan");
         System.out.println(" 5. Cari Berdasarkan Jam Berangkat");
         System.out.println(" 0. Kembali");
-        System.out.println("----------------------------------------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
     }  
     
     public void searchBooking(){
-        System.out.println("-------------------------------------------| PENCARIAN DATA TIKET |---------------------------------------------");
+        System.out.println("-------------------------------------------| PENCARIAN DATA TIKET |--------------------------------------------");
         System.out.println(" 1. Cari Berdasarkan Kode Tiket [ Detail ]");
         System.out.println(" 2. Cari Berdasarkan Nama Pembeli");
         System.out.println(" 3. Cari Berdasarkan Tujuan");
         System.out.println(" 4. Cari Berdasarkan Tanggal Pesan");
         System.out.println(" 5. Cari Berdasarkan Tanggal Berangkat");
         System.out.println(" 0. Kembali");
-        System.out.println("----------------------------------------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
     }
     
     public void clrscr(){
