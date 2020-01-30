@@ -37,15 +37,17 @@ public class BookingHandle {
             trip.dataOnly();
             System.out.print(" Masukan Tujuan : ");
             tujuan = WordUtils.capitalizeFully(sc.nextLine(),' ');
+            System.out.println("");
             System.out.println(" Tanggal Tidak Boleh Sebelum Hari ini ");
             System.out.println(" Tanggal [ dd/mm/yyyy ] Contoh = [ 21/02/2040 ]");
             System.out.print(" Masukan Tanggal Berangkat : ");
             tgl_prgi = format.formatTgl(sc.nextLine());
+            System.out.println("");
             System.out.println(" Masukan Kode Bus Untuk Menentukan Jam Berangkat ");
             System.out.print(" Kode Bus Berangkat : ");
             kodebus = sc.nextLine();
             kodebus = kodebus.toUpperCase();
-            System.out.println("--------------------------------------------------");
+            System.out.println("---------------------------------------------------------------------------------------------------------------");
             if(format.tujuandb(tujuan) && format.aftertgl(tgl_prgi) && format.kodeBus(kodebus) && db.fullBus(kodebus, tujuan, tgl_prgi)){
                 sc.nextLine();
                 while(!next){
@@ -56,11 +58,12 @@ public class BookingHandle {
                     System.out.println(" Tanggal Berangkat\t: "+format.reFormatTgl(tgl_prgi));
                     System.out.println(" Jam Berangkat \t\t: "+format.formatJam(db.jamBerangkat(kodebus)));
                     System.out.println(" Kode Bus \t\t: "+kodebus);
-                    System.out.println("--------------------------------------------------");
-                    System.out.println("----------------| DATA PEMBELI |------------------");
+                    System.out.println("---------------------------------------------------------------------------------------------------------------");
+                    System.out.println("-----------------------------------------------| DATA PEMBELI |------------------------------------------------");
                     System.out.println(" Jumlah Karakter Harus 16");
                     System.out.print(" Masukan no. KTP : ");
                     ktp = sc.nextLine();
+                    System.out.println("");
                     System.out.println(" Nama Pembeli Min 3, Max 20 karakter");
                     System.out.print(" Masukan Nama Pembeli : ");
                     nama_pemesan = sc.nextLine();
@@ -70,13 +73,13 @@ public class BookingHandle {
                         String [] data = {id_tiket,ktp,nama_pemesan,tujuan,tgl_psn,tgl_prgi,kodebus};
                         System.out.println(Arrays.toString(data));
                         if(db.insert(table, data)){
-                            System.out.println("--------------------------------------------------");
+                            System.out.println("---------------------------------------------------------------------------------------------------------------");
                             System.out.println(" Pembelian Tiket Berhasil!");
-                            System.out.println("--------------------------------------------------");
+                            System.out.println("---------------------------------------------------------------------------------------------------------------");
                             next = true;
                         } else {
                             System.out.println(" Terjadi Kesalahan Saat Memasukan Data");
-                            System.out.println("--------------------------------------------------");
+                            System.out.println("---------------------------------------------------------------------------------------------------------------");
                             next = true;
                         }
                     }else {
@@ -91,7 +94,7 @@ public class BookingHandle {
                 }
             } else {
                 System.out.println(" Data yang dimasukan tidak sesuai! ");
-                System.out.println("--------------------------------------------------");
+                System.out.println("---------------------------------------------------------------------------------------------------------------");
             }
             System.out.println(" Apakah anda ingin memasukan data lagi ?");
             System.out.println(" Pilih [y] untuk memasukan data lain, atau karakter lain untuk keluar");
@@ -109,10 +112,10 @@ public class BookingHandle {
     public void view(){
         display.clrscr();
         display.header();
-        System.out.println("----------------------------------| DATA TIKET |----------------------------------");
-        System.out.println("----------------------------------------------------------------------------------");
-        System.out.println("| Kode Tiket |     Nama Pemesan     |      Tujuan      | Tgl Berangkat | Kode Bus |");
-        System.out.println("|------------|----------------------|------------------|---------------|----------|");
+        System.out.println("-------------------------------------------------| DATA TIKET |------------------------------------------------");
+        System.out.println("\t     -----------------------------------------------------------------------------------");
+        System.out.println("\t     | Kode Tiket |     Nama Pemesan     |      Tujuan      | Tgl Berangkat | Kode Bus |");
+        System.out.println("\t     |------------|----------------------|------------------|---------------|----------|");
         List<Map<String, Object>> data = db.select(table, "");
         if(data.size()!=0){
             for(int i = 0; i < data.size(); i++){
@@ -121,12 +124,12 @@ public class BookingHandle {
                 tujuan = format.formatTujuan(data.get(i).get("tujuan").toString());
                 tgl_prgi = format.reFormatTgl(data.get(i).get("tanggal_berangkat").toString());
                 kodebus = data.get(i).get("kode_bus").toString();
-                System.out.println("| "+ id_tiket +"  | "+nama_pemesan +" | "+ tujuan +" |  "+ tgl_prgi +"   |  "+ kodebus +"   |");
+                System.out.println("\t\t     | "+ id_tiket +"  | "+nama_pemesan +" | "+ tujuan +" |  "+ tgl_prgi +"   |  "+ kodebus +"   |");
             }
         } else {
-            System.out.println("|-----------------------------| TIDAK ADA DATA |---------------------------------|");
+        System.out.println("\t     |------------------------------| TIDAK ADA DATA |---------------------------------|");
         }
-        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
     }
     
     public void update(){
@@ -154,7 +157,7 @@ public class BookingHandle {
                 System.out.println(" Kode Tiket \t\t: "+id_tiket);
                 System.out.println(" KTP Pemesan \t\t: "+ktp); 
                 System.out.println(" Nama Pemesan \t\t: "+nama_pemesan);
-                System.out.println("------------------------------------------------------");
+                System.out.println("---------------------------------------------------------------------------------------------------------------");
                 System.out.println(" Kosongkan Kolom Jika Ingin Tidak Mengubah Data Sebelumnya");
                 trip.getTrip();
                 System.out.println(" Kota Tujuan Sebelumnya \t: "+tujuan);
@@ -190,7 +193,7 @@ public class BookingHandle {
                     String [] col = {"tujuan","tanggal_pemesanan","tanggal_berangkat","kode_bus"};
                     String [] uData = {tujuan,tgl_psn,tgl_prgi,kodebus};
                     if(db.update(table, col, uData, where)){
-                        System.out.println("-----------------------------------------------------");
+                        System.out.println("---------------------------------------------------------------------------------------------------------------");
                         System.out.println(" Data Tiket Berhasil Diubah! ");
                         next=true;
                     } else {
@@ -210,11 +213,11 @@ public class BookingHandle {
                 } 
             }
         } else {
-            System.out.println("-----------------------------------------------------");
-            System.out.println("|--------------| DATA TIDAK DITEMUKAN |--------------|");
+            System.out.println("---------------------------------------------------------------------------------------------------------------");
+            System.out.println("|------------------------------------------| DATA TIDAK DITEMUKAN |-------------------------------------------|");
         }
-        System.out.println("-----------------------------------------------------");
-        System.out.println("Tekan [Enter] Untuk Kembali...");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        System.out.println(" Tekan [Enter] Untuk Kembali...");
         sc.nextLine();
         
     }
@@ -261,7 +264,8 @@ public class BookingHandle {
         System.out.println("--------------------------------------------| PENCARIAN KODE TIKET |-------------------------------------------");
         System.out.print(" Masukan Kode Tiket : ");
         where=sc.nextLine();
-        System.out.println("----------------------------------| DATA TIKET |----------------------------------");
+        System.out.println("");
+        System.out.println("-------------------------------------------------| DATA TIKET |------------------------------------------------");
         List<Map<String, Object>> data = db.select(table, "`id_tiket`='"+where+"'");
         if(data.size()!=0){
             id_tiket = data.get(0).get("id_tiket").toString();
@@ -287,9 +291,9 @@ public class BookingHandle {
 
             
         } else {
-            System.out.println("|-----------------------| DATA TIDAK DITEMUKAN |-----------------------------|");
+            System.out.println("|-----------------------------------------| DATA TIDAK DITEMUKAN |--------------------------------------------|");
         }
-        System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
         System.out.println("Tekan [Enter] Untuk Kembali...");
         sc.nextLine();
     }
@@ -301,10 +305,10 @@ public class BookingHandle {
         System.out.println("------------------------------------------| PENCARIAN NAMA PEMESAN |-------------------------------------------");
         System.out.print(" Masukan Nama Pembeli : ");
         where=sc.nextLine();
-        System.out.println("----------------------------------| DATA TIKET |----------------------------------");
-        System.out.println("----------------------------------------------------------------------------------");
-        System.out.println("| Kode Tiket |     Nama Pemesan     |      Tujuan      | Tgl Berangkat | Kode Bus |");
-        System.out.println("|------------|----------------------|------------------|---------------|----------|");
+        System.out.println("\t      -----------------------------------| DATA TIKET |----------------------------------");
+        System.out.println("\t      -----------------------------------------------------------------------------------");
+        System.out.println("\t      | Kode Tiket |     Nama Pemesan     |      Tujuan      | Tgl Berangkat | Kode Bus |");
+        System.out.println("\t      |------------|----------------------|------------------|---------------|----------|");
         List<Map<String, Object>> data = db.select(table, "`nama_pemesan` LIKE '%"+where+"%'");
         if(data.size()!=0){
             id_tiket = data.get(0).get("id_tiket").toString();
@@ -319,14 +323,14 @@ public class BookingHandle {
                 tujuan = format.formatTujuan(data.get(i).get("tujuan").toString());
                 tgl_prgi = format.reFormatTgl(data.get(i).get("tanggal_berangkat").toString());
                 kodebus = data.get(i).get("kode_bus").toString();
-                System.out.println("| "+ id_tiket +"  | "+nama_pemesan +" | "+ tujuan +" |  "+ tgl_prgi +"   |  "+ kodebus +"   |");
+                System.out.println("\t      | "+ id_tiket +"  | "+nama_pemesan +" | "+ tujuan +" |  "+ tgl_prgi +"   |  "+ kodebus +"   |");
             }
             
         } else {
-            System.out.println("|-----------------------| DATA TIDAK DITEMUKAN |-----------------------------|");
+        System.out.println("\t      |--------------------------| DATA TIDAK DITEMUKAN |-------------------------------|");
         }
-        System.out.println("---------------------------------------------------------------------------------");
-        System.out.println("Tekan [Enter] Untuk Kembali...");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        System.out.println(" Tekan [Enter] Untuk Kembali...");
         sc.nextLine();
     }
     
@@ -337,10 +341,10 @@ public class BookingHandle {
         System.out.println("------------------------------------------| PENCARIAN TUJUAN TIKET |-------------------------------------------");
         System.out.print(" Masukan Tujuan Tiket : ");
         where=sc.nextLine();
-        System.out.println("----------------------------------| DATA TIKET |----------------------------------");
-        System.out.println("----------------------------------------------------------------------------------");
-        System.out.println("| Kode Tiket |     Nama Pemesan     |      Tujuan      | Tgl Berangkat | Kode Bus |");
-        System.out.println("|------------|----------------------|------------------|---------------|----------|");
+        System.out.println("\t      -----------------------------------| DATA TIKET |----------------------------------");
+        System.out.println("\t      -----------------------------------------------------------------------------------");
+        System.out.println("\t      | Kode Tiket |     Nama Pemesan     |      Tujuan      | Tgl Berangkat | Kode Bus |");
+        System.out.println("\t      |------------|----------------------|------------------|---------------|----------|");
         List<Map<String, Object>> data = db.select(table, "`tujuan` LIKE '%"+where+"%'");
         if(data.size()!=0){
             id_tiket = data.get(0).get("id_tiket").toString();
@@ -355,14 +359,14 @@ public class BookingHandle {
                 tujuan = format.formatTujuan(data.get(i).get("tujuan").toString());
                 tgl_prgi = format.reFormatTgl(data.get(i).get("tanggal_berangkat").toString());
                 kodebus = data.get(i).get("kode_bus").toString();
-                System.out.println("| "+ id_tiket +"  | "+nama_pemesan +" | "+ tujuan +" |  "+ tgl_prgi +"   |  "+ kodebus +"   |");
+                System.out.println("\t      | "+ id_tiket +"  | "+nama_pemesan +" | "+ tujuan +" |  "+ tgl_prgi +"   |  "+ kodebus +"   |");
             }
             
         } else {
-            System.out.println("|-----------------------| DATA TIDAK DITEMUKAN |-----------------------------|");
+        System.out.println("\t      |--------------------------| DATA TIDAK DITEMUKAN |-------------------------------|");
         }
-        System.out.println("---------------------------------------------------------------------------------");
-        System.out.println("Tekan [Enter] Untuk Kembali...");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        System.out.println(" Tekan [Enter] Untuk Kembali...");
         sc.nextLine();
     }
     
@@ -373,10 +377,11 @@ public class BookingHandle {
         System.out.println("------------------------------------------| PENCARIAN TANGGAL PESAN |------------------------------------------");
         System.out.print(" Masukan Tanggal Berangkat [ dd/mm/yyyy ]  : ");
         where=format.formatTgl(sc.nextLine());
-        System.out.println("----------------------------------| DATA TIKET |----------------------------------");
-        System.out.println("----------------------------------------------------------------------------------");
-        System.out.println("| Kode Tiket |     Nama Pemesan     |      Tujuan      | Tgl Berangkat |  Tgl Pesan  | Kode Bus |");
-        System.out.println("|------------|----------------------|------------------|---------------|-------------|----------|");
+        System.out.println("");
+        System.out.println("\t------------------------------------------| DATA TIKET |-----------------------------------------");
+        System.out.println("\t-------------------------------------------------------------------------------------------------");
+        System.out.println("\t| Kode Tiket |     Nama Pemesan     |      Tujuan      | Tgl Berangkat |  Tgl Pesan  | Kode Bus |");
+        System.out.println("\t|------------|----------------------|------------------|---------------|-------------|----------|");
         List<Map<String, Object>> data = db.select(table, "`tanggal_pemesanan` = '"+where+"'");
         if(data.size()!=0){
             id_tiket = data.get(0).get("id_tiket").toString();
@@ -392,14 +397,14 @@ public class BookingHandle {
                 tgl_prgi = format.reFormatTgl(data.get(i).get("tanggal_berangkat").toString());
                 tgl_psn = format.reFormatTgl(data.get(i).get("tanggal_pemesanan").toString());
                 kodebus = data.get(i).get("kode_bus").toString();
-                System.out.println("| "+ id_tiket +"  | "+nama_pemesan +" | "+ tujuan +" |  "+ tgl_prgi +"   | "+ tgl_psn+ "  |  "+ kodebus +"   |");
+                System.out.println("\t| "+ id_tiket +"  | "+nama_pemesan +" | "+ tujuan +" |  "+ tgl_prgi +"   | "+ tgl_psn+ "  |  "+ kodebus +"   |");
             }
             
         } else {
-            System.out.println("|--------------------------------| DATA TIDAK DITEMUKAN |---------------------------------------|");
+            System.out.println("\t|--------------------------------| DATA TIDAK DITEMUKAN |---------------------------------------|");
         }
-        System.out.println("---------------------------------------------------------------------------------");
-        System.out.println("Tekan [Enter] Untuk Kembali...");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        System.out.println(" Tekan [Enter] Untuk Kembali...");
         sc.nextLine();
     }
     
@@ -410,11 +415,12 @@ public class BookingHandle {
         System.out.println("---------------------------------------| PENCARIAN TANGGAL BERANGKAT |-----------------------------------------");
         System.out.print(" Masukan Tanggal Berangkat [ dd/mm/yyyy ]  : ");
         where=format.formatTgl(sc.nextLine());
-        System.out.println("----------------------------------| DATA TIKET |----------------------------------");
-        System.out.println("----------------------------------------------------------------------------------");
-        System.out.println("| Kode Tiket |     Nama Pemesan     |      Tujuan      | Tgl Berangkat | Kode Bus |");
-        System.out.println("|------------|----------------------|------------------|---------------|----------|");
-        List<Map<String, Object>> data = db.select(table, "`tgl_berangkat` = '"+where+"'");
+        System.out.println("");
+        System.out.println("\t      -----------------------------------| DATA TIKET |----------------------------------");
+        System.out.println("\t      -----------------------------------------------------------------------------------");
+        System.out.println("\t      | Kode Tiket |     Nama Pemesan     |      Tujuan      | Tgl Berangkat | Kode Bus |");
+        System.out.println("\t      |------------|----------------------|------------------|---------------|----------|");
+        List<Map<String, Object>> data = db.select(table, "`tanggal_berangkat` = '"+where+"'");
         if(data.size()!=0){
             id_tiket = data.get(0).get("id_tiket").toString();
             nama_pemesan = format.formatNama(data.get(0).get("nama_pemesan").toString());
@@ -428,14 +434,14 @@ public class BookingHandle {
                 tujuan = format.formatTujuan(data.get(i).get("tujuan").toString());
                 tgl_prgi = format.reFormatTgl(data.get(i).get("tanggal_berangkat").toString());
                 kodebus = data.get(i).get("kode_bus").toString();
-                System.out.println("| "+ id_tiket +"  | "+nama_pemesan +" | "+ tujuan +" |  "+ tgl_prgi +"   |  "+ kodebus +"   |");
+                System.out.println("\t      | "+ id_tiket +"  | "+nama_pemesan +" | "+ tujuan +" |  "+ tgl_prgi +"   |  "+ kodebus +"   |");
             }
             
         } else {
-            System.out.println("|--------------------------------| DATA TIDAK DITEMUKAN |---------------------------------------|");
+            System.out.println("\t      |---------------------------| DATA TIDAK DITEMUKAN |------------------------------|");
         }
-        System.out.println("---------------------------------------------------------------------------------");
-        System.out.println("Tekan [Enter] Untuk Kembali...");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        System.out.println(" Tekan [Enter] Untuk Kembali...");
         sc.nextLine();
     }
     
@@ -449,10 +455,11 @@ public class BookingHandle {
             System.out.println(" Masukan 0 untuk kembali");
             System.out.print(" Masukan Kode Tiket : ");
             pil=sc.nextLine();
+            System.out.println("");
             if(pil.equals("0")){
                 done = true;
             } else {
-                System.out.println("----------------------------------| DATA TIKET |----------------------------------");
+                System.out.println("-------------------------------------------------| DATA TIKET |------------------------------------------------");
                 List<Map<String, Object>> data = db.select(table, "`id_tiket`='"+pil+"'");
                 if(data.size()!=0){
                     id_tiket = data.get(0).get("id_tiket").toString();
@@ -473,7 +480,7 @@ public class BookingHandle {
                     System.out.println(" Tanggal Pemesanan \t: "+tgl_psn);
                     System.out.println(" Jam Berangkat \t\t: "+format.formatJam(jam));
                     System.out.println(" Kode Bus \t\t: "+kodebus);
-                    System.out.println("---------------------------------------------------------------------------------");
+                    System.out.println("---------------------------------------------------------------------------------------------------------------");
                     
                     System.out.println(" Yakin? Data Diatas Akan Dihapus. Tekan [y] untuk Menghapus atau karakter lain untuk Batal");
                     System.out.print(" Pilihan  : ");
@@ -486,7 +493,7 @@ public class BookingHandle {
                         String val = format.rawDate();
                         
                         if(db.delete( where, val, 0)){
-                            System.out.println("-----------------------------------------------------");
+                            System.out.println("---------------------------------------------------------------------------------------------------------------");
                             System.out.println(" Data Perjalanan Berhasil Dihapus");
                             done = true;
                         } else {
@@ -497,8 +504,8 @@ public class BookingHandle {
                         sc.nextLine();
                     }
                 } else {
-                    System.out.println("|-----------------------| DATA TIDAK DITEMUKAN |-----------------------------|");
-                    System.out.println("---------------------------------------------------------------------------------");
+                    System.out.println("|----------------------------------------| DATA TIDAK DITEMUKAN |---------------------------------------------|");
+                    System.out.println("---------------------------------------------------------------------------------------------------------------");
                     System.out.println(" Ulangi? Tekan [y] untuk mengulangi atau karakter lain untuk keluar");
                     System.out.print(" Ulangi? : ");
                     pil=sc.nextLine();

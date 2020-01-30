@@ -35,20 +35,24 @@ public class TripHandle {
             System.out.println(" Contoh Kode Perjalanan [ T-001 ] ");
             System.out.print(" Kode Perjalanan : T-");
             kode = "T-"+sc.nextLine();
+            System.out.println("");
             System.out.println(" Contoh Tujuan [ Bali ] Min 3, Max 15 Karakter");
             System.out.print(" Tujuan Perjalanan : ");
             tujuan = WordUtils.capitalizeFully(sc.nextLine(),' ');
+            System.out.println("");
             System.out.println(" Contoh Harga [ 452000 ] Min 1000, Max 9999999");
             System.out.print(" Harga Perjalanan : Rp. ");
             harga = sc.nextLine();
+            System.out.println("");
             System.out.println(" Contoh Makan [ 3 ] Min 0, Max 99");
             System.out.print(" Jumlah Makan Perjalanan : ");
             makan = sc.nextLine();
+            System.out.println("");
             bus.dataOnly();
             System.out.print(" Masukan Kode Bus : ");
             kodebus = sc.nextLine();
             kodebus = kodebus.toUpperCase();
-            System.out.println("--------------------------------------------------------");
+            System.out.println("---------------------------------------------------------------------------------------------------------------");
            
             if(!format.kodeBus(kodebus) || !format.harga(harga) || !format.kodePerjalanan(kode) || !format.tujuan(tujuan) || !format.makan(makan)){
                 System.out.println(" Data yang Dimasukan Tidak Sesuai!");
@@ -60,7 +64,7 @@ public class TripHandle {
                 String [] data = {kode,tujuan,harga,makan,kodebus};
                 if(db.insert(table, data)){
                     System.out.println(" Penambahan Data Perjalanan Berhasil!");
-                    System.out.println("--------------------------------------------------------");
+                    System.out.println("---------------------------------------------------------------------------------------------------");
                 }else{
                     System.out.println(" Terjadi Kesalahan Saat Penambahan Data!");
                     System.out.println(" Pastikan Kode Perjalanan Unik");
@@ -82,9 +86,9 @@ public class TripHandle {
         display.clrscr();
         display.header();
         System.out.println("----------------------------------------------| DATA PERJALANAN |----------------------------------------------");
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("| Kode Perjalanan |      Tujuan      |    Harga    | Jam Berangkat | Makan |");
-        System.out.println("|-----------------|------------------|-------------|---------------|-------|");
+        System.out.println("\t\t----------------------------------------------------------------------------");
+        System.out.println("\t\t| Kode Perjalanan |      Tujuan      |    Harga    | Jam Berangkat | Makan |");
+        System.out.println("\t\t|-----------------|------------------|-------------|---------------|-------|");
         List<Map<String, Object>> data = db.select(table2, "t_perjalanan.kode_bus=t_bus.kode_bus");
         if(data.size()!=0){
             for(int i = 0; i < data.size(); i++){
@@ -93,12 +97,12 @@ public class TripHandle {
                 harga = format.formatHarga(data.get(i).get("harga").toString());
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
                 makan = format.formatMakan(data.get(i).get("makan").toString());
-                System.out.println("|      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
+                System.out.println("\t\t|      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
             }
         } else {
-            System.out.println("|--------------------------| TIDAK ADA DATA |----------------------------|");
+        System.out.println("\t\t|----------------------------| TIDAK ADA DATA |----------------------------|");
         }
-        System.out.println("--------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
     }
    
     public void update(){
@@ -121,29 +125,32 @@ public class TripHandle {
                         display.clrscr();
                         display.header();
                         System.out.println("-------------------------------------------| UBAH DATA PERJALANAN |--------------------------------------------");
-                        System.out.println("-----------------------------------------------------------");
+                        System.out.println("---------------------------------------------------------------------------------------------------------------");
                         System.out.println(" Tekan [Enter] untuk Tidak mengubah data sebelumnya");
                         System.out.println(" Kode Perjalanan Sebelumnya \t\t: "+data.get(0).get("id_perjalanan"));
                         System.out.print(" Kode Perjalanan Baru \t\t\t: ");
                         kode = sc.nextLine();
-                        System.out.println("-----------------------------------------------------------");
+                        System.out.println("");
+                        System.out.println("---------------------------------------------------------------------------------------------------------------");
                         System.out.println(" Tujuan Perjalanan Sebelumnya \t\t: "+data.get(0).get("tujuan"));
                         System.out.print(" Tujuan Bus Baru \t\t\t: ");
                         tujuan = sc.nextLine();
-                        System.out.println("-----------------------------------------------------------");
+                        System.out.println("");
+                        System.out.println("---------------------------------------------------------------------------------------------------------------");
                         System.out.println(" Harga Perjalanan Sebelumnya \t\t: "+data.get(0).get("harga").toString());
                         System.out.print(" Harga Perjalanan Baru \t\t\t: Rp. ");
                         harga = sc.nextLine();
-                        System.out.println("-----------------------------------------------------------");
+                        System.out.println("");
+                        System.out.println("---------------------------------------------------------------------------------------------------------------");
                         System.out.println(" Jumlah Makan Sebelumnya \t\t: "+data.get(0).get("makan").toString());
                         System.out.print(" Jumlah Makan Baru \t\t\t: ");
                         makan = sc.nextLine();
-                        System.out.println("-----------------------------------------------------------");
+                        System.out.println("---------------------------------------------------------------------------------------------------------------");
                         bus.dataOnly();
                         System.out.println(" Kode Bus Perjalanan Sebelumnya \t: "+data.get(0).get("kode_bus").toString());
                         System.out.print(" Kode Bus Perjalanan Baru \t\t: ");
                         kodebus = sc.nextLine();
-                        System.out.println("-----------------------------------------------------------");
+                        System.out.println("---------------------------------------------------------------------------------------------------------------");
                         
                         if(kode.equals("")){
                             kode = data.get(0).get("id_perjalanan").toString();
@@ -238,11 +245,12 @@ public class TripHandle {
         System.out.println("-----------------------------------------| PENCARIAN KODE PERJALANAN |-----------------------------------------");
         System.out.print(" Masukan Kode Perjalanan : ");
         where=sc.nextLine();
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("--------------------------| HASIL PENCARIAN |-----------------------------");
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("| Kode Perjalanan |     Tujuan      |    Harga    | Jam Berangkat | Makan |");
-        System.out.println("|-----------------|-----------------|-------------|---------------|-------|");
+        System.out.println("");
+        System.out.println("\t\t  ---------------------------------------------------------------------------");
+        System.out.println("\t\t  ---------------------------| HASIL PENCARIAN |-----------------------------");
+        System.out.println("\t\t  ---------------------------------------------------------------------------");
+        System.out.println("\t\t  | Kode Perjalanan |     Tujuan      |    Harga    | Jam Berangkat | Makan |");
+        System.out.println("\t\t  |-----------------|-----------------|-------------|---------------|-------|");
         List<Map<String, Object>> data = db.select(table2, "t_perjalanan.kode_bus=t_bus.kode_bus AND id_perjalanan LIKE '%"+where+"%'");
         if(data.size()!=0){
             for(int i = 0; i < data.size(); i++){
@@ -251,13 +259,13 @@ public class TripHandle {
                 harga = format.formatHarga(data.get(i).get("harga").toString());
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
                 makan = format.formatMakan(data.get(i).get("makan").toString());
-                System.out.println("|      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
+                System.out.println("\t\t  |      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
             }
         } else {
-            System.out.println("|--------------------------| TIDAK ADA DATA |----------------------------|");
+            System.out.println("\t\t  |---------------------------| TIDAK ADA DATA |----------------------------|");
         }
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("Tekan [Enter] Untuk Kembali...");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        System.out.println(" Tekan [Enter] Untuk Kembali...");
         sc.nextLine();
     }
     
@@ -268,11 +276,12 @@ public class TripHandle {
         System.out.println("----------------------------------------| PENCARIAN TUJUAN PERJALANAN |----------------------------------------");
         System.out.print(" Masukan Tujuan Perjalanan : ");
         where=sc.nextLine();
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("--------------------------| HASIL PENCARIAN |-----------------------------");
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("| Kode Perjalanan |     Tujuan      |    Harga    | Jam Berangkat | Makan |");
-        System.out.println("|-----------------|-----------------|-------------|---------------|-------|");
+        System.out.println("");
+        System.out.println("\t\t  ---------------------------------------------------------------------------");
+        System.out.println("\t\t  ---------------------------| HASIL PENCARIAN |-----------------------------");
+        System.out.println("\t\t  ---------------------------------------------------------------------------");
+        System.out.println("\t\t  | Kode Perjalanan |     Tujuan      |    Harga    | Jam Berangkat | Makan |");
+        System.out.println("\t\t  |-----------------|-----------------|-------------|---------------|-------|");
         List<Map<String, Object>> data = db.select(table2, "t_perjalanan.kode_bus=t_bus.kode_bus AND tujuan LIKE '%"+where+"%'");
         if(data.size()!=0){
             for(int i = 0; i < data.size(); i++){
@@ -281,13 +290,13 @@ public class TripHandle {
                 harga = format.formatHarga(data.get(i).get("harga").toString());
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
                 makan = format.formatMakan(data.get(i).get("makan").toString());
-                System.out.println("|      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
+                System.out.println("\t\t  |      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
             }
         } else {
-            System.out.println("|--------------------------| TIDAK ADA DATA |----------------------------|");
+            System.out.println("\t\t  |---------------------------| TIDAK ADA DATA |----------------------------|");
         }
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("Tekan [Enter] Untuk Kembali...");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        System.out.println(" Tekan [Enter] Untuk Kembali...");
         sc.nextLine();
     }
      
@@ -298,13 +307,15 @@ public class TripHandle {
         System.out.println("----------------------------------------| PENCARIAN HARGA PERJALANAN |-----------------------------------------");
         System.out.print(" Masukan Harga Minimal  : Rp. ");
         min=sc.nextLine();
+        System.out.println("");
         System.out.print(" Masukan Harga Maksimal : Rp. ");
         max=sc.nextLine();
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("--------------------------| HASIL PENCARIAN |-----------------------------");
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("| Kode Perjalanan |      Tujuan      |    Harga    | Jam Berangkat | Makan |");
-        System.out.println("|-----------------|------------------|-------------|---------------|-------|");
+        System.out.println("");
+        System.out.println("\t\t  ----------------------------------------------------------------------------");
+        System.out.println("\t\t  ----------------------------| HASIL PENCARIAN |-----------------------------");
+        System.out.println("\t\t  ----------------------------------------------------------------------------");
+        System.out.println("\t\t  | Kode Perjalanan |      Tujuan      |    Harga    | Jam Berangkat | Makan |");
+        System.out.println("\t\t  |-----------------|------------------|-------------|---------------|-------|");
         List<Map<String, Object>> data = db.select(table2, "t_perjalanan.kode_bus=t_bus.kode_bus AND `harga` >= '"+min+"' AND `harga` <= '"+max+"'");
         if(data.size()!=0){
             for(int i = 0; i < data.size(); i++){
@@ -313,13 +324,13 @@ public class TripHandle {
                 harga = format.formatHarga(data.get(i).get("harga").toString());
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
                 makan = format.formatMakan(data.get(i).get("makan").toString());
-                System.out.println("|      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
+                System.out.println("\t\t  |      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
             }
         } else {
-            System.out.println("|--------------------------| TIDAK ADA DATA |----------------------------|");
+            System.out.println("\t\t  |---------------------------| TIDAK ADA DATA |-----------------------------|");
         }
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("Tekan [Enter] Untuk Kembali...");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        System.out.println(" Tekan [Enter] Untuk Kembali...");
         sc.nextLine();
     }
      
@@ -330,13 +341,15 @@ public class TripHandle {
         System.out.println("-------------------------------------| PENCARIAN JUMLAH MAKAN PERJALANAN |-------------------------------------");
         System.out.print(" Masukan Jumlah Makan Minimal  : ");
         min=sc.nextLine();
+          System.out.println("");
         System.out.print(" Masukan Jumlah Makan Maksimal : ");
         max=sc.nextLine();
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("--------------------------| HASIL PENCARIAN |-----------------------------");
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("| Kode Perjalanan |      Tujuan      |    Harga    | Jam Berangkat | Makan |");
-        System.out.println("|-----------------|------------------|-------------|---------------|-------|");
+          System.out.println("");
+        System.out.println("\t\t  ----------------------------------------------------------------------------");
+        System.out.println("\t\t  ---------------------------| HASIL PENCARIAN |------------------------------");
+        System.out.println("\t\t  ----------------------------------------------------------------------------");
+        System.out.println("\t\t  | Kode Perjalanan |      Tujuan      |    Harga    | Jam Berangkat | Makan |");
+        System.out.println("\t\t  |-----------------|------------------|-------------|---------------|-------|");
         List<Map<String, Object>> data = db.select(table2, "t_perjalanan.kode_bus=t_bus.kode_bus AND `makan` >= '"+min+"' AND `makan` <= '"+max+"'");
         if(data.size()!=0){
             for(int i = 0; i < data.size(); i++){
@@ -345,13 +358,13 @@ public class TripHandle {
                 harga = format.formatHarga(data.get(i).get("harga").toString());
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
                 makan = format.formatMakan(data.get(i).get("makan").toString());
-                System.out.println("|      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
+                System.out.println("\t\t  |      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
             }
         } else {
-            System.out.println("|--------------------------| TIDAK ADA DATA |----------------------------|");
+            System.out.println("\t\t  |---------------------------| TIDAK ADA DATA |-----------------------------|");
         }
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("Tekan [Enter] Untuk Kembali...");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        System.out.println(" Tekan [Enter] Untuk Kembali...");
         sc.nextLine();
     }
      
@@ -363,13 +376,15 @@ public class TripHandle {
         System.out.println(" Jam = [jj:mm] Contoh = 10:30");
         System.out.print(" Masukan Jam Berangkat Minimal  : ");
         min=sc.nextLine();
+         System.out.println("");
         System.out.print(" Masukan Jam Berangkat Maksimal : ");
         max=sc.nextLine();
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("--------------------------| HASIL PENCARIAN |-----------------------------");
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("| Kode Perjalanan |      Tujuan      |    Harga    | Jam Berangkat | Makan |");
-        System.out.println("|-----------------|------------------|-------------|---------------|-------|");
+         System.out.println("");
+        System.out.println("\t\t  ----------------------------------------------------------------------------");
+        System.out.println("\t\t  ----------------------------| HASIL PENCARIAN |-----------------------------");
+        System.out.println("\t\t  ----------------------------------------------------------------------------");
+        System.out.println("\t\t  | Kode Perjalanan |      Tujuan      |    Harga    | Jam Berangkat | Makan |");
+        System.out.println("\t\t  |-----------------|------------------|-------------|---------------|-------|");
         List<Map<String, Object>> data = db.select(table2, "t_perjalanan.kode_bus=t_bus.kode_bus AND `jam_berangkat` >= '"+min+"' AND `jam_berangkat` <= '"+max+"'");
         if(data.size()!=0){
             for(int i = 0; i < data.size(); i++){
@@ -378,13 +393,13 @@ public class TripHandle {
                 harga = format.formatHarga(data.get(i).get("harga").toString());
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
                 makan = format.formatMakan(data.get(i).get("makan").toString());
-                System.out.println("|      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
+                System.out.println("\t\t  |      "+kode+"      | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |");
             }
         } else {
-            System.out.println("|--------------------------| TIDAK ADA DATA |----------------------------|");
+            System.out.println("\t\t  |---------------------------| TIDAK ADA DATA |-----------------------------|");
         }
-        System.out.println("--------------------------------------------------------------------------");
-        System.out.println("Tekan [Enter] Untuk Kembali...");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        System.out.println(" Tekan [Enter] Untuk Kembali...");
         sc.nextLine();
     }
      
@@ -402,7 +417,7 @@ public class TripHandle {
                 String key = "id_perjalanan";
                 String val = format.rawDate();
                 if(db.delete( where, val, 1)){
-                    System.out.println("----------------------------------");
+                System.out.println("---------------------------------------------------------------------------------------------------------------");
                     System.out.println(" Data Perjalanan Berhasil Dihapus");
                     done = true;
                 } else {
@@ -419,9 +434,9 @@ public class TripHandle {
       public void dataOnly(){
         display.clrscr();
         display.header();
-        System.out.println("---------------------------------------------------------------------");
-        System.out.println("|     Tujuan       |    Harga    | Jam Berangkat | Makan | Kode Bus |");
-        System.out.println("|------------------|-------------|---------------|-------|----------|");
+        System.out.println("\t\t    ---------------------------------------------------------------------");
+        System.out.println("\t\t    |     Tujuan       |    Harga    | Jam Berangkat | Makan | Kode Bus |");
+        System.out.println("\t\t    |------------------|-------------|---------------|-------|----------|");
         List<Map<String, Object>> data = db.select(table2, "t_perjalanan.kode_bus=t_bus.kode_bus");
         if(data.size()!=0){
             for(int i = 0; i < data.size(); i++){
@@ -430,18 +445,18 @@ public class TripHandle {
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
                 makan = format.formatMakan(data.get(i).get("makan").toString());
                 kode = data.get(i).get("kode_bus").toString();
-                System.out.println("| "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |  "+ kode +"   |");
+                System.out.println("\t\t    | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |  "+ kode +"   |");
             }
         } else {
-            System.out.println("|----------------------| TIDAK ADA DATA |--------------------------|");
+            System.out.println("\t\t    |-----------------------| TIDAK ADA DATA |--------------------------|");
         }
-        System.out.println("-------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
     }
       
       public void getTrip(){
-        System.out.println("---------------------------------------------------------------------");
-        System.out.println("|     Tujuan       |    Harga    | Jam Berangkat | Makan | Kode Bus |");
-        System.out.println("|------------------|-------------|---------------|-------|----------|");
+        System.out.println("\t\t  ---------------------------------------------------------------------");
+        System.out.println("\t\t  |     Tujuan       |    Harga    | Jam Berangkat | Makan | Kode Bus |");
+        System.out.println("\t\t  |------------------|-------------|---------------|-------|----------|");
         List<Map<String, Object>> data = db.select(table2, "t_perjalanan.kode_bus=t_bus.kode_bus");
         if(data.size()!=0){
             for(int i = 0; i < data.size(); i++){
@@ -450,12 +465,12 @@ public class TripHandle {
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
                 makan = format.formatMakan(data.get(i).get("makan").toString());
                 kode = data.get(i).get("kode_bus").toString();
-                System.out.println("| "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |  "+ kode +"   |");
+                System.out.println("\t\t  | "+tujuan +" | "+ harga +" |     "+jam+"     |  "+makan+"  |  "+ kode +"   |");
             }
         } else {
-            System.out.println("|----------------------| TIDAK ADA DATA |--------------------------|");
+            System.out.println("\t\t  |-----------------------| TIDAK ADA DATA |--------------------------|");
         }
-        System.out.println("-------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
     }
       
 }
