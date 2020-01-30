@@ -248,7 +248,7 @@ public class BusHandle {
                 kode = data.get(i).get("kode_bus").toString();
                 seat = format.formatJmlhSeat(data.get(i).get("jmlh_seat").toString());
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
-                System.out.println("\t\t\t\t      |  "+kode +"   | "+ seat +"  |    "+ jam +"     |");
+                System.out.println("\t\t\t\t      |  "+kode +"   | "+ seat +"  |     "+ jam +"     |");
                 System.out.println("\t\t\t\t      -----------------------------------");
 
             }
@@ -283,7 +283,7 @@ public class BusHandle {
                 kode = data.get(i).get("kode_bus").toString();
                 seat = format.formatJmlhSeat(data.get(i).get("jmlh_seat").toString());
                 jam = format.formatJam(data.get(i).get("jam_berangkat").toString());
-                System.out.println("\t\t\t\t      |  "+kode +"   | "+ seat +"  |    "+ jam +"     |");
+                System.out.println("\t\t\t\t      |  "+kode +"   | "+ seat +"  |     "+ jam +"     |");
                 System.out.println("\t\t\t\t      -----------------------------------");
             }
         } else {
