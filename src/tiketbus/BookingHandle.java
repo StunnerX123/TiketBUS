@@ -124,7 +124,7 @@ public class BookingHandle {
                 tujuan = format.formatTujuan(data.get(i).get("tujuan").toString());
                 tgl_prgi = format.reFormatTgl(data.get(i).get("tanggal_berangkat").toString());
                 kodebus = data.get(i).get("kode_bus").toString();
-                System.out.println("\t\t     | "+ id_tiket +"  | "+nama_pemesan +" | "+ tujuan +" |  "+ tgl_prgi +"   |  "+ kodebus +"   |");
+                System.out.println("\t     | "+ id_tiket +"  | "+nama_pemesan +" | "+ tujuan +" |  "+ tgl_prgi +"   |  "+ kodebus +"   |");
             }
         } else {
         System.out.println("\t     |------------------------------| TIDAK ADA DATA |---------------------------------|");
